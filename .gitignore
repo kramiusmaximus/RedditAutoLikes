@@ -1,1 +1,8 @@
 venv
+*.log
+*.DS_store
+*__pycache__
+profile
+docs
+*.idea
+*.log

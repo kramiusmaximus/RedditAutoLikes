@@ -131,7 +131,7 @@ def perform_reddit_likes(url_posts_to_like, account_names, accounts, proxies):
         # set chrome params
         proxy = proxies[i % len(proxies)]
 
-        chrome_options = set_chrome_params(proxy)
+        chrome_options = set_chrome_params()
 
         # driver = uc.Chrome()
         driver = get_web_driver(chrome_options)

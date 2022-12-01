@@ -52,13 +52,14 @@ def init_proxies(path_to_proxies) -> []:
     except Exception:
         print("Unknown error occurred")
 
-def set_chrome_params(proxy):
+def set_chrome_params(proxy=None):
 
     # standard chrome options
 
     options = Options()
     options.user_data_dir = './profile'
-    options.add_argument('--proxy-server=%s' % proxy)
+    if proxy:
+        options.add_argument('--proxy-server=%s' % proxy)
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     options.add_argument('--disable-blink-features=AutomationControlled')

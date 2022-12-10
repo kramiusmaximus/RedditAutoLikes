@@ -57,9 +57,11 @@ def set_chrome_params(proxy=None):
     # standard chrome options
 
     options = Options()
-    options.user_data_dir = './profile'
     if proxy:
         options.add_argument('--proxy-server=%s' % proxy)
+    ua = UserAgent()['google chrome']
+    options.add_argument(f'user-agent={ua}')
+    options.add_argument("user-data-dir=./profile")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     options.add_argument('--disable-blink-features=AutomationControlled')

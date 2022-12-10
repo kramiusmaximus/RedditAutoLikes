@@ -4,6 +4,7 @@ from actions import perform_reddit_likes
 from setup import *
 import logging
 import threading
+import random
 
 
 def get_batch(t_index, n_threads, account_names):
@@ -24,16 +25,17 @@ def get_batch(t_index, n_threads, account_names):
 def main():
 
     VARS = {
-        "NLIKES": 6,
-        "NTHREADS": 3,
+        "NLIKES": 96,
+        "NTHREADS": 1,
     }
 
     url_posts_to_like = [
-        'https://www.reddit.com/r/triathlon/comments/z8aota/cheapest_1406sironmans_in_the_us/'
+        'https://www.reddit.com/r/Blondes/comments/ze7yyj/smash_or_pass/'
     ]
 
     # load existing accounts
     account_names, accounts = init_accounts('./data/accounts.obj', './docs/accounts.txt')
+    random.shuffle(account_names)
     account_names = account_names[:min(VARS['NLIKES'], len(account_names))]
 
     # load proxies

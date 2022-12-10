@@ -23,6 +23,11 @@ def reddit_bot_like_routine(driver, url_posts_to_like, user, password):
     #driver.get("https://gologin.com/check-browser")
     driver.get("https://reddit.com/")
 
+    source = driver.page_source
+
+    if 'service unavailable' in source.lower():
+        # reload page
+        driver.refresh()
 
     ## accept cookies
 
@@ -94,6 +99,20 @@ def reddit_bot_like_routine(driver, url_posts_to_like, user, password):
             pass
         time.sleep(0.1)
 
+        # accept nudity warning
+        try:
+            driver.find_element(by=By.XPATH, value= "//button[contains(.,'Yes')]").click()
+        except NoSuchElementException:
+            pass
+        time.sleep(2)
+
+        # close annoying popup
+        try:
+            driver.find_element(by=By.XPATH, value="//button[@aria-label='Close' or @aria-label='Schließen' or @aria-label='Fermer' or @aria-label='Cerca' or @aria-label='Chiudere' or @aria-label='Perto' or @aria-label='Uždaryti' or @aria-label='Tæt']").click()
+        except NoSuchElementException:
+            pass
+        time.sleep(0.1)
+
         try:
             like_buttons = driver.find_elements(By.XPATH, "//button[contains(@id, 'upvote-button-t3')]")
             like = like_buttons[0]
@@ -131,7 +150,7 @@ def perform_reddit_likes(url_posts_to_like, account_names, accounts, proxies):
         # set chrome params
         proxy = proxies[i % len(proxies)]
 
-        chrome_options = set_chrome_params()
+        chrome_options = set_chrome_params(proxy)
 
         # driver = uc.Chrome()
         driver = get_web_driver(chrome_options)

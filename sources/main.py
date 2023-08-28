@@ -30,7 +30,7 @@ def main():
     }
 
     url_posts_to_like = [
-        'https://www.reddit.com/r/Blondes/comments/ze7yyj/smash_or_pass/'
+        'https://www.reddit.com/r/movies/comments/11ardg6/what_do_you_think_of_my_idea/'
     ]
 
     # load existing accounts

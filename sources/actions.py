@@ -40,13 +40,26 @@ def reddit_bot_like_routine(driver, url_posts_to_like, user, password):
 
     try:
         WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR,
-                                                                    "a[class='Z_HUY3BUsGOBOtdmH94ZS _3Wg53T10KuuPmyWOMWsY2F _2iuoyPiKHN3kfOoeIQalDT _10BQ7pjWbeYP63SAPNS8Ts HNozj_dKjQZ59ZsfEegz8 _2nelDm85zKKmuD94NequP0']"))).click()
+                                                                    "button[class='_10K5i7NW6qcm-UoCtpB3aK _1pA8z73SZ1olP5KMKFN4_Z _18X7KoiaLuKbuLqg4zE8BH _22SL37yETIW414yUiZj27w']"))).click()
     except WebDriverException as e:
         log.error(e, exc_info=True)
         raise
     except Exception as e:
         log.error(e, exc_info=True)
         raise
+
+# click login/ logout
+    try:
+        #WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR,"a[class='_1YWXCINvcuU7nk0ED-bta8']"))).click()
+
+        driver.find_elements(by=By.CSS_SELECTOR, value="a[class='_1YWXCINvcuU7nk0ED-bta8']")[-1].click()
+    except WebDriverException as e:
+        log.error(e, exc_info=True)
+        raise
+    except Exception as e:
+        log.error(e, exc_info=True)
+        raise
+
 
     time.sleep(2)
     try:

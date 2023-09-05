@@ -5,13 +5,11 @@ from logging import getLogger
 log = getLogger(__name__)
 log.setLevel(logging.DEBUG)
 
-from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
 from setup import set_chrome_params, get_web_driver
-import undetected_chromedriver as uc
 
 
 def reddit_bot_like_routine(driver, url_posts_to_like, user, password):
@@ -136,20 +134,6 @@ def reddit_bot_like_routine(driver, url_posts_to_like, user, password):
             raise e
 
         time.sleep(2)
-
-    # # logout
-    #
-    # time.sleep(0.1)
-    # try:
-    #     driver.find_element(by=By.CSS_SELECTOR, value="button[id='USER_DROPDOWN_ID']").click()
-    # except Exception:
-    #     print(Exception)
-    #
-    # time.sleep(0.1)
-    # try:
-    #     driver.find_elements(by=By.CSS_SELECTOR, value="button[class='_3fbofimxVp_hpVM6I1TGMS GCltVwsXPu5lE-gs4Nucu']")[-1].click()
-    # except Exception:
-    #     print(Exception)
 
     driver.quit()
 
